@@ -46,19 +46,8 @@ class MyHashTable<K, V> {
 		   }
 		   return null;
 	   }
-	    public V get(Object key) {
-	        Entry<?,?> tab[] = table;
-	        int hash = key.hashCode();
-	        int index = (hash & 0x7FFFFFFF) % tab.length;
-	        for (Entry<?,?> e = tab[index] ; e != null ; e = e.next) {
-	            if ((e.key.hashCode() == hash) && e.key.equals(key)) {
-	                return (V)e.value;
-	            }
-	        }
-	        return null;
-	    }
+
 	   
-	    //public void get
 	    private int calculateIndex(K key) {
 	        // Calculate the index using a hash function.
 	        int hashCode = key.hashCode();

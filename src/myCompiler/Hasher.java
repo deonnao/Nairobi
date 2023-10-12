@@ -46,6 +46,36 @@ class MyHashTable<K, V> {
 		   return false;
 		   
 	   }
+		public ArrayList<K> keySet() {
+		Entry<K,V>[] tab = table;
+		ArrayList<K> keys = new ArrayList<>();
+		int i = capacity -1;
+		while (i > -1) {
+			for (Entry<K,V> e = tab[i]; e != null; e = e.next ) {
+				if (e != null){
+					keys.add(e.key);
+				}
+			}
+			i--;
+		}
+
+		return keys;
+	}
+	public ArrayList<V> valueSet() {
+		Entry<K,V>[] tab = table;
+		ArrayList<V> values = new ArrayList<>();
+		int i = capacity -1;
+		while (i > -1) {
+			for (Entry<K,V> e = tab[i]; e != null; e = e.next ) {
+				//if (e.key != null){
+					values.add(e.value);
+				//}
+			}
+			i--;
+		}
+
+		return values;
+	}
 	   public void put(K key, V value) {
 	       int index = calculateIndex(key);
 

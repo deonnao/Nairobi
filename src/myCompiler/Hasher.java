@@ -20,7 +20,17 @@ class MyHashTable<K, V> {
 	       this.capacity = capacity;
 	       table = new Entry[capacity];
 	    }
-
+	   public boolean containsKey(K input) {
+		   int index = calculateIndex(input);
+		   Entry<K,V> current = table[index];
+		   while(current != null) {
+			   if (current.key == input){
+				   return true;
+			   }
+			   current = current.next;
+		   }
+		   return false;
+	   }
 	   public void put(K key, V value) {
 	       int index = calculateIndex(key);
 

@@ -31,6 +31,21 @@ class MyHashTable<K, V> {
 		   }
 		   return false;
 	   }
+	public boolean changeValue(K key, V value) {
+		   int index = calculateIndex(key);
+		   Entry<K,V> current = table[index];
+		   while(current != null) {
+			   if (current.key == key){
+				   current.value = value;
+				   //Return true if changed
+				   return true;
+			   }
+			   current = current.next;
+		   }
+		   //Return false if not found/changed
+		   return false;
+		   
+	   }
 	   public void put(K key, V value) {
 	       int index = calculateIndex(key);
 

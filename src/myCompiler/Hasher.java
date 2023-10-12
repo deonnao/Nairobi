@@ -1,5 +1,4 @@
 package myCompiler;
-
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.ArrayList;
@@ -10,30 +9,31 @@ class Entry<K, V> {
 	   V value;
 	   Entry<K, V> next;
 
-	    public Entry(K key, V value) {
-	        this.key = key;
+	   public Entry(K key, V value) {
+		   this.key = key;
 	        this.value = value;
 	    }
 	}
 class MyHashTable<K, V> {
-	   private Entry<K, V>[] table;
-	   private int capacity;
+	private Entry<K, V>[] table;
+	private int capacity;   
 
-	   public MyHashTable(int capacity) {
-	       this.capacity = capacity;
-	       table = new Entry[capacity];
-	    }
-	   public boolean containsKey(K input) {
-		   int index = calculateIndex(input);
-		   Entry<K,V> current = table[index];
-		   while(current != null) {
-			   if (current.key == input){
+	public MyHashTable(int capacity) {
+	    this.capacity = capacity;
+	    table = new Entry[capacity];
+	}
+	    
+	public boolean containsKey(K input) {
+		int index = calculateIndex(input);
+		Entry<K,V> current = table[index];
+		while(current != null) {
+			if (current.key == input){
 				   return true;
 			   }
-			   current = current.next;
+			   current = current.next;   
 		   }
-		   return false;
-	   }
+		   return false;  
+	   }   
 	public boolean changeValue(K key, V value) {
 		   int index = calculateIndex(key);
 		   Entry<K,V> current = table[index];
@@ -97,7 +97,7 @@ class MyHashTable<K, V> {
 	   public V getValue(K key) {
 		   Entry<K,V>[] tab = table;
 		   int hash = key.hashCode();
-		   int index = calculateIndex(key);
+		   int index = calculateIndex(key); 
 		   for (Entry<K,V> e = tab[index]; e != null; e = e.next ) {
 			   if((e.key.hashCode() == hash) && e.key.equals(key) ) {
 				   return (V) e.value;
@@ -121,15 +121,13 @@ class MyHashTable<K, V> {
 		   return false;
 	   }
 
-	   private int calculateIndex(K key) {
-		   // Calculate the index using a hash function.
-		   //get the hashcode (integer value that represents the objects hashcode) of the key
-		   int hashCode = key.hashCode();
-		   //ensure that the hashcode is not negative
-		   return (hashCode & 0x7FFFFFFF) % capacity;
-	   }
+	   
+	    private int calculateIndex(K key) {
+	        // Calculate the index using a hash function.
+	        int hashCode = key.hashCode();
+	        return (hashCode & 0x7FFFFFFF) % capacity;
+	    }
 }
-
 public class Hasher {
 	public static void main(String[] args) {
 		MyHashTable<String,String> hash = new MyHashTable<>(10); //Add a capacity

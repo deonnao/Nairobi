@@ -137,11 +137,11 @@ public class Hasher {
 		hash.put("grade","char");
 		hash.put("myBool","boolean");
 		
-		System.out.print(hash.keySet());
-		System.out.print(hash.valueSet());
-		System.out.print(hash.changeValue("greeting","char"));
-		System.out.print(hash.getValue("greeting"));
-		System.out.print(hash.containsKey("num1"));
+		System.out.println(hash.keySet());
+		System.out.println(hash.valueSet());
+		System.out.println(hash.changeValue("greeting","char"));
+		System.out.println(hash.getValue("greeting"));
+		System.out.println(hash.containsKey("num1"));
 				
 		
 	}

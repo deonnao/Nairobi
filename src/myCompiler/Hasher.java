@@ -119,9 +119,6 @@ class MyHashTable<K, V> {
 		   }
 		   //False if fails to remove
 		   return false;
-		   
-		   
-		   
 	   }
 
 	   private int calculateIndex(K key) {
@@ -137,16 +134,16 @@ public class Hasher {
 	public static void main(String[] args) {
 		MyHashTable<String,String> hash = new MyHashTable<>(10); //Add a capacity
 		hash.put("greeting","String");
-		hash.put("12","int");
-		hash.put("10.12","float");
-		hash.put("abc","char");
-		hash.put("true","boolean");
+		hash.put("num1","int");
+		hash.put("myNum","float");
+		hash.put("grade","char");
+		hash.put("myBool","boolean");
 		
 		System.out.print(hash.keySet());
 		System.out.print(hash.valueSet());
 		System.out.print(hash.changeValue("greeting","char"));
 		System.out.print(hash.getValue("greeting"));
-		System.out.print(hash.containsKey("12"));
+		System.out.print(hash.containsKey("num1"));
 				
 		
 	}

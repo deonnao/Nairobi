@@ -2,6 +2,7 @@ package myCompiler;
 
 import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.ArrayList;
 
 
 class Entry<K, V> {
@@ -48,6 +49,37 @@ class MyHashTable<K, V> {
 		   return false;
 		   
 	   }
+	public ArrayList<K> keySet() {
+		Entry<K,V>[] tab = table;
+		ArrayList<K> keys = new ArrayList<>();
+		int i = capacity -1;
+		while (i > -1) {
+			for (Entry<K,V> e = tab[i]; e != null; e = e.next ) {
+				if (e != null){
+					keys.add(e.key);
+				}
+			}
+			i--;
+		}
+
+		return keys;
+	}
+	public ArrayList<V> valueSet() {
+		Entry<K,V>[] tab = table;
+		ArrayList<V> values = new ArrayList<>();
+		int i = capacity -1;
+		while (i > -1) {
+			for (Entry<K,V> e = tab[i]; e != null; e = e.next ) {
+				//if (e.key != null){
+					values.add(e.value);
+				//}
+			}
+			i--;
+		}
+
+		return values;
+	}
+	
 	   public void put(K key, V value) {
 	       int index = calculateIndex(key);
 
@@ -73,6 +105,24 @@ class MyHashTable<K, V> {
 		   }
 		   return null;
 	   }
+	   public boolean remove(K key) {
+		   int index = calculateIndex(key);
+		   int hash = key.hashCode();
+		   Entry<K,V>[] tab = table;
+		   for (Entry<K,V> e = tab[index]; e != null; e = e.next ) {
+			   if((e.key.hashCode() == hash) && e.key.equals(key) ) {
+				   e.value = null;
+				   e.key = null;
+				   //true for removed
+				   return true;
+			   }
+		   }
+		   //False if fails to remove
+		   return false;
+		   
+		   
+		   
+	   }
 
 	   private int calculateIndex(K key) {
 		   // Calculate the index using a hash function.
@@ -85,6 +135,19 @@ class MyHashTable<K, V> {
 
 public class Hasher {
 	public static void main(String[] args) {
+		MyHashTable<String,String> hash = new MyHashTable<>(10); //Add a capacity
+		hash.put("greeting","String");
+		hash.put("12","int");
+		hash.put("10.12","float");
+		hash.put("abc","char");
+		hash.put("true","boolean");
+		
+		System.out.print(hash.keySet());
+		System.out.print(hash.valueSet());
+		System.out.print(hash.changeValue("greeting","char"));
+		System.out.print(hash.getValue("greeting"));
+		System.out.print(hash.containsKey("12"));
+				
 		
 	}
 }
